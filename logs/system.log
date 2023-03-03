@@ -1,0 +1,26 @@
+2023-03-03T19:27:37.706Z  INFO 8460 --- [main] c.t.a.AttractionsGuideApplication        : Starting AttractionsGuideApplication using Java 17.0.6 with PID 8460 (/Users/jiayuran/Desktop/attractionsGuide/target/classes started by jiayuran in /Users/jiayuran/Desktop/attractionsGuide)
+2023-03-03T19:27:37.707Z  INFO 8460 --- [main] c.t.a.AttractionsGuideApplication        : The following 1 profile is active: "dev"
+2023-03-03T19:27:38.027Z  INFO 8460 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-03T19:27:38.039Z  INFO 8460 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+2023-03-03T19:27:38.337Z  INFO 8460 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8001 (http)
+2023-03-03T19:27:38.345Z  INFO 8460 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-03T19:27:38.345Z  INFO 8460 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-03T19:27:38.451Z  INFO 8460 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-03T19:27:38.452Z  INFO 8460 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 716 ms
+2023-03-03T19:27:38.546Z  INFO 8460 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-03T19:27:38.589Z  INFO 8460 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-03-03T19:27:38.754Z  INFO 8460 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-03T19:27:39.029Z  INFO 8460 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b832551
+2023-03-03T19:27:39.030Z  INFO 8460 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-03T19:27:39.082Z  INFO 8460 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-03-03T19:27:39.257Z  INFO 8460 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-03T19:27:39.264Z  INFO 8460 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-03T19:27:39.285Z  WARN 8460 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-03T19:27:39.495Z  INFO 8460 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8001 (http) with context path ''
+2023-03-03T19:27:39.502Z  INFO 8460 --- [main] c.t.a.AttractionsGuideApplication        : Started AttractionsGuideApplication in 2.079 seconds (process running for 2.265)
+2023-03-03T19:27:44.903Z  INFO 8460 --- [http-nio-8001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-03T19:27:44.905Z  INFO 8460 --- [http-nio-8001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-03T19:27:44.909Z  INFO 8460 --- [http-nio-8001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-03-03T19:27:58.249Z  INFO 8460 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-03T19:27:58.252Z  INFO 8460 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-03T19:27:58.258Z  INFO 8460 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
