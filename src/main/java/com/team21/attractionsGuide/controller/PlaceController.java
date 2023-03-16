@@ -1,19 +1,16 @@
 package com.team21.attractionsGuide.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.team21.attractionsGuide.service.GoogleMapService;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/place")
 public class PlaceController {
 
     private GoogleMapService googleService = new GoogleMapService();
 
-    @PostMapping(value = "/getNearbyAttractions", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/getNearbyAttractions", produces = "application/json;charset=UTF-8")
     @ResponseBody
 
     public String getNearbyAttractions(
@@ -32,18 +29,18 @@ public class PlaceController {
         return respString;
     }
 
-    @PostMapping(value = "/getAutoComplete", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/getAutoComplete", produces = "application/json;charset=UTF-8")
     public String getAutoCompletePlaces(
             @RequestParam String input,
             @RequestParam double latitude,
-            @RequestParam double longtitude,
+            @RequestParam double longitude,
             @RequestParam Integer radius
     ) {
         // TODO: Valid the parameters, springboot will check the type automatically.
         //  We should valid them logically.
 
         // handle by GoogleMapService class
-        String respString = googleService.getAutocompletePlacesList(input, latitude, longtitude, radius);
+        String respString = googleService.getAutocompletePlacesList(input, latitude, longitude, radius);
         // Respond with json
         return respString;
     }

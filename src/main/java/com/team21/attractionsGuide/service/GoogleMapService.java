@@ -25,7 +25,7 @@ public class GoogleMapService {
         return resp;
     }
 
-    public String getAutocompletePlacesList(String input, double latitude, double longtitude, Integer radius) {
+    public String getAutocompletePlacesList(String input, double latitude, double longitude, Integer radius) {
         RestTemplate restTemplate = new RestTemplate();
 
         String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={location}&radius={radius}&key={key}";
@@ -34,8 +34,7 @@ public class GoogleMapService {
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("input", input);
-//        params.put("location", currentLocation);
-        params.put("location", latitude + "," + longtitude);
+        params.put("location", latitude + "," + longitude);
         params.put("radius", Integer.toString(radius));
         params.put("key", apiKey);
 
