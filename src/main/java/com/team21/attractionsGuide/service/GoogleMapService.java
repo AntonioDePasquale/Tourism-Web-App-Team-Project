@@ -25,16 +25,17 @@ public class GoogleMapService {
         return resp;
     }
 
-    public String getAutocompletePlacesList(String input, String currentLocation, Integer radius) {
+    public String getAutocompletePlacesList(String input, double latitude, double longtitude, Integer radius) {
         RestTemplate restTemplate = new RestTemplate();
 
-        String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={currentLocation}&radius={radius}&key={key}";
+        String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={location}&radius={radius}&key={key}";
 
         // Can add origin param which would allow the distance from autoCompleted places to be returned in metres
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("input", input);
-        params.put("location", currentLocation);
+//        params.put("location", currentLocation);
+        params.put("location", latitude + "," + longtitude);
         params.put("radius", Integer.toString(radius));
         params.put("key", apiKey);
 

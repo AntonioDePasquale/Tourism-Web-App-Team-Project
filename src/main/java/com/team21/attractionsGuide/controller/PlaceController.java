@@ -32,16 +32,18 @@ public class PlaceController {
         return respString;
     }
 
+    @PostMapping(value = "/getAutoComplete", produces = "application/json;charset=UTF-8")
     public String getAutoCompletePlaces(
             @RequestParam String input,
-            @RequestParam String currentLocation,
+            @RequestParam double latitude,
+            @RequestParam double longtitude,
             @RequestParam Integer radius
     ) {
         // TODO: Valid the parameters, springboot will check the type automatically.
         //  We should valid them logically.
 
         // handle by GoogleMapService class
-        String respString = googleService.getAutocompletePlacesList(input, currentLocation, radius);
+        String respString = googleService.getAutocompletePlacesList(input, latitude, longtitude, radius);
         // Respond with json
         return respString;
     }
