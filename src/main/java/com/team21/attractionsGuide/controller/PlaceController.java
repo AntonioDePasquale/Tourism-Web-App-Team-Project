@@ -18,7 +18,7 @@ public class PlaceController {
 
     public String getNearbyAttractions(
             @RequestParam double latitude,
-            @RequestParam double longtitude
+            @RequestParam double longitude
     ) {
         // Get parameters from the url
         // eg. /place/getNearbyAttractions?latitude=1&longitude=2, get '1' and '2'
@@ -27,10 +27,22 @@ public class PlaceController {
         //  We should valid them logically.
 
         // handle by GoogleMapService class
-        String respString = googleService.getNearbyPlaces(latitude, longtitude);
+        String respString = googleService.getNearbyPlaces(latitude, longitude);
         // Respond with json
         return respString;
-
     }
 
+    public String getAutoCompletePlaces(
+            @RequestParam String input,
+            @RequestParam String currentLocation,
+            @RequestParam Integer radius
+    ) {
+        // TODO: Valid the parameters, springboot will check the type automatically.
+        //  We should valid them logically.
+
+        // handle by GoogleMapService class
+        String respString = googleService.getAutocompletePlacesList(input, currentLocation, radius);
+        // Respond with json
+        return respString;
+    }
 }
