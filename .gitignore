@@ -1,2 +1,8 @@
-target
-logs/*
+target/
+logs/
+.idea
+.log
+.mvn
+.DS_Store
+log
+temp/
