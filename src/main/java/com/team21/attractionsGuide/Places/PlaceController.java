@@ -1,6 +1,5 @@
-package com.team21.attractionsGuide.controller;
+package com.team21.attractionsGuide.Places;
 
-import com.team21.attractionsGuide.service.GoogleMapService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

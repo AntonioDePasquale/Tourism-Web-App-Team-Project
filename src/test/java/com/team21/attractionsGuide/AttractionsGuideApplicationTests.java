@@ -1,5 +1,6 @@
 package com.team21.attractionsGuide;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AttractionsGuideApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+	void contextLoads() throws JsonProcessingException {
 
+	}
 }
