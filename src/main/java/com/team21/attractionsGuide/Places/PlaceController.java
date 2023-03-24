@@ -12,7 +12,7 @@ public class PlaceController {
     @GetMapping(value = "/getNearbyAttractions", produces = "application/json;charset=UTF-8")
     @ResponseBody
 
-    public String getNearbyAttractions(
+    public String getNearbyPlaces(
             @RequestParam double latitude,
             @RequestParam double longitude
     ) {
@@ -23,7 +23,7 @@ public class PlaceController {
         //  We should valid them logically.
 
         // handle by GoogleMapService class
-        String respString = googleService.getNearbyPlaces(latitude, longitude);
+        String respString = googleService.getNearbyPlacesApiString(latitude, longitude);
         // Respond with json
         return respString;
     }
@@ -39,7 +39,20 @@ public class PlaceController {
         //  We should valid them logically.
 
         // handle by GoogleMapService class
-        String respString = googleService.getAutocompletePlacesList(input, latitude, longitude, radius);
+        String respString = googleService.getAutocompletePlacesApiString(input, latitude, longitude, radius);
+        // Respond with json
+        return respString;
+    }
+
+    @GetMapping(value = "/getDetails", produces = "application/json;charset=UTF-8")
+    public String getPlaceDetails(
+            @RequestParam String placeID
+    ) {
+        // TODO: Valid the parameters, springboot will check the type automatically.
+        //  We should valid them logically.
+
+        // handle by GoogleMapService class
+        String respString = googleService.getPlaceDetailsApiString(placeID);
         // Respond with json
         return respString;
     }

@@ -38,8 +38,6 @@ public class Place {
         this.types = types;
     }
 
-    public Place() {}
-
     public String getDescription() {
         return description;
     }

@@ -19,7 +19,7 @@ public class GoogleMapService {
     final Map<Integer, Place> placesMap = new HashMap<Integer, Place>();
     final String apiKey = "AIzaSyCOVP27tJRVNkn4D9BxLo6oap9nM3V-lVA";
 
-    public String getNearbyPlaces(double latitude, double longtitude) {
+    public String getNearbyPlacesApiString(double latitude, double longtitude) {
         RestTemplate restTemplate = new RestTemplate();
         // read the key from configuration in production environment
 
@@ -34,7 +34,7 @@ public class GoogleMapService {
         return resp;
     }
 
-    public String getAutocompletePlacesList(String input, double latitude, double longitude, Integer radius) {
+    public String getAutocompletePlacesApiString(String input, double latitude, double longitude, Integer radius) {
         RestTemplate restTemplate = new RestTemplate();
 
         String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={location}&origin={location}&radius={radius}&key={key}";
@@ -47,6 +47,24 @@ public class GoogleMapService {
 
         // JSON string, return directly or process it. Here just return.
         // TODO process JSON string into Array or List(make a separate function to format Json data into Places Object)
+
+        String resp = restTemplate.getForObject(requestUrl, String.class, params);
+        return resp;
+    }
+
+    public String getPlaceDetailsApiString(String placeID) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // for the request URL there are more optional field parameters to filter returned details that have not been included
+        // current version is the bare minimum required for the API to return JSON
+
+        String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?place_id={placeID}&key={key}";
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("placeID", placeID);
+        params.put("key", apiKey);
+
+        // JSON string, return directly or process it. Here just return.
 
         String resp = restTemplate.getForObject(requestUrl, String.class, params);
         return resp;
