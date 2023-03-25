@@ -12,7 +12,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     // Fields used throughout the class
     private String name;
@@ -50,8 +50,8 @@ public class Comment {
      * Getters and setters for the fields of the Comment object
      */
 
-    public int getId() { return id; }
-    private void setId(int id) { this.id = id; }
+    public Long getId() { return id;}
+    private void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

@@ -1,11 +1,12 @@
 package com.team21.attractionsGuide.service;
 
-import com.team21.attractionsGuide.repository.CommentRepository;
 import com.team21.attractionsGuide.entity.Comment;
+import com.team21.attractionsGuide.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service class responsible for managing Comment objects.
@@ -41,6 +42,25 @@ public class CommentService {
     public void createComment(Comment comment) {
         commentRepository.save(comment);
     }
+
+    /**
+     * Finds a comment by its ID
+     * @param id - The ID of the comment to be found
+     * @return Optional<Comment>
+     */
+    public Optional<Comment> findCommentById(Long id) {
+        return commentRepository.findById(id);
+    }
+
+    /**
+     * Updates a comment with new data
+     *
+     * @param updatedComment - The updated comment object
+     */
+    public void updateComment(Comment updatedComment) {
+        commentRepository.save(updatedComment);
+    }
+
 
     /**
      * Deletes a comment based on its ID

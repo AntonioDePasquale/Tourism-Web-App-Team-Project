@@ -17,7 +17,7 @@ import java.util.List;
 public class CommentController {
 
     /**
-     * CommentService is an interface for handling comment-related business logic.
+     * CommentService is used for handling comment-related business logic.
      */
     private final CommentService commentService;
 
