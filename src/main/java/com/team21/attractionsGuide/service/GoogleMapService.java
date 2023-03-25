@@ -1,16 +1,10 @@
-package com.team21.attractionsGuide.Places;
+package com.team21.attractionsGuide.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import org.apache.tomcat.util.json.JSONParser;
+import com.team21.attractionsGuide.entity.Place;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.gson.Gson;
 
 
 public class GoogleMapService {
@@ -19,14 +13,21 @@ public class GoogleMapService {
     final Map<Integer, Place> placesMap = new HashMap<Integer, Place>();
     final String apiKey = "AIzaSyCOVP27tJRVNkn4D9BxLo6oap9nM3V-lVA";
 
-    public String getNearbyPlaces(double latitude, double longtitude) {
+    /**
+     * Fetches nearby places using the Google Maps API based on the given latitude and longitude.
+     *
+     * @param latitude  - The latitude of the location
+     * @param longitude - The longitude of the location
+     * @return A JSON string containing nearby places
+     */
+    public String getNearbyPlaces(double latitude, double longitude) {
         RestTemplate restTemplate = new RestTemplate();
         // read the key from configuration in production environment
 
         String requestUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={location}&radius={radius}&key={key}";
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("location", latitude + "," + longtitude);
+        params.put("location", latitude + "," + longitude);
         params.put("radius", "1500");
         params.put("key", apiKey);
         // JSON string, return directly or process it. Here just return.
@@ -34,6 +35,16 @@ public class GoogleMapService {
         return resp;
     }
 
+    /**
+     * Fetches autocomplete suggestions for place names using the Google Maps API based on
+     * the given input and location.
+     *
+     * @param input     - The input string for place name suggestions
+     * @param latitude  - The latitude of the location
+     * @param longitude - The longitude of the location
+     * @param radius    - The search radius around the given location
+     * @return A JSON string containing autocomplete suggestions for place names
+     */
     public String getAutocompletePlacesList(String input, double latitude, double longitude, Integer radius) {
         RestTemplate restTemplate = new RestTemplate();
 
