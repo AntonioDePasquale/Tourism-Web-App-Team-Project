@@ -1,5 +1,8 @@
 package com.team21.attractionsGuide.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.team21.attractionsGuide.entity.Place;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,14 +23,15 @@ public class GoogleMapService {
      * @param longitude - The longitude of the location
      * @return A JSON string containing nearby places
      */
-    public String getNearbyPlaces(double latitude, double longitude) {
+    public String getNearbyPlacesApiString(double latitude, double longitude, String type) {
         RestTemplate restTemplate = new RestTemplate();
         // read the key from configuration in production environment
 
-        String requestUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={location}&radius={radius}&key={key}";
+        String requestUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={location}&type={type}&radius={radius}&key={key}";
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("location", latitude + "," + longitude);
+        params.put("type", type);
         params.put("radius", "1500");
         params.put("key", apiKey);
         // JSON string, return directly or process it. Here just return.
@@ -45,7 +49,7 @@ public class GoogleMapService {
      * @param radius    - The search radius around the given location
      * @return A JSON string containing autocomplete suggestions for place names
      */
-    public String getAutocompletePlacesList(String input, double latitude, double longitude, Integer radius) {
+    public String getAutocompletePlacesApiString(String input, double latitude, double longitude, Integer radius) {
         RestTemplate restTemplate = new RestTemplate();
 
         String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={location}&origin={location}&radius={radius}&key={key}";
@@ -61,5 +65,52 @@ public class GoogleMapService {
 
         String resp = restTemplate.getForObject(requestUrl, String.class, params);
         return resp;
+    }
+
+    /**
+     * Uses a place ID from a place search to request more in-depth details such as opening/closing times etc.
+     *
+     * @param placeID     - The string placeID which is required for additional details
+     * @return A JSON string containing autocomplete suggestions for place names
+     */
+    public String getPlaceDetailsApiString(String placeID) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // for the request URL there are more optional field parameters to filter returned details that have not been included
+        // current version is the bare minimum required for the API to return JSON
+
+        String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?place_id={placeID}&key={key}";
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("placeID", placeID);
+        params.put("key", apiKey);
+
+        // JSON string, return directly or process it. Here just return.
+
+        String resp = restTemplate.getForObject(requestUrl, String.class, params);
+        return resp;
+    }
+
+    /**
+     * Function used to merge two Json strings, the first string is prioritised in case of key collisions.
+     * Uses the jackson library for object mapper functionality
+     *
+     * @param first      - the first Json string to merge
+     * @param second     - the second Json string to merge
+     * @return A JSON string containing the merged keys and values of the two strings
+     */
+    public String mergeJsonStrings(String first, String second) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Map<String, Object> firstMap = mapper.readValue(first, Map.class);
+        Map<String, Object> secondMap = mapper.readValue(first, Map.class);
+        Map<String, Object> mergedMap = new HashMap<String, Object>(secondMap);
+
+        mergedMap.putAll(firstMap);
+
+        String result = mapper.writeValueAsString(mergedMap);
+
+        return result;
     }
 }
