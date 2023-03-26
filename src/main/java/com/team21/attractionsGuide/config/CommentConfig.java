@@ -30,8 +30,11 @@ public class CommentConfig {
         return args -> {
             //creates a list of test comments
             List<Comment> testComments = new ArrayList<>(List.of(
-                new Comment("Tony", 5, 5, "my comment", "Hello my name is tony and this place is great!"),
-                new Comment("Alex", 1, 21, "don't go here", "Yo this place sucks!")
+//                new Comment("Tony", 5, 5, "my comment", "Hello my name is tony and this place is great!"),
+//                new Comment("Alex", 1, 21, "don't go here", "Yo this place sucks!")
+                    new Comment("Tony", 5,  "Hello my name is tony and this place is great!", "newcastle-01"),
+                new Comment("Alex", 1,  "Yo this place sucks!", "newcastle-02")
+
             ));
     
             try {
