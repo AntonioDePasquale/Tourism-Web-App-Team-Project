@@ -1,4 +1,4 @@
-package com.team21.attractionsGuide.Places;
+package com.team21.attractionsGuide.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
