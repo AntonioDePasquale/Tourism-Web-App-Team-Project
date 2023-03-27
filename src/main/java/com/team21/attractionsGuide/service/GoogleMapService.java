@@ -79,14 +79,10 @@ public class GoogleMapService {
         // for the request URL there are more optional field parameters to filter returned details that have not been included
         // current version is the bare minimum required for the API to return JSON
 
-        String requestUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json?place_id={placeID}&key={key}";
-
+        String requestUrl = "https://maps.googleapis.com/maps/api/place/details/json?place_id={placeID}&key={key}";
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("placeID", placeID);
         params.put("key", apiKey);
-
-        // JSON string, return directly or process it. Here just return.
-
         String resp = restTemplate.getForObject(requestUrl, String.class, params);
         return resp;
     }
