@@ -1,7 +1,5 @@
-package com.team21.attractionsGuide.controller;
+package com.team21.attractionsGuide.error;
 
-import com.team21.attractionsGuide.Error.CommentWithTheLocationIdNotFoundException;
-import com.team21.attractionsGuide.Error.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

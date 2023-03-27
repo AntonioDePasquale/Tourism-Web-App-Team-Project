@@ -1,4 +1,4 @@
-package com.team21.attractionsGuide.Error;
+package com.team21.attractionsGuide.error;
 
 /**
  * This class is a custom exception *   will be thrown when no comment is match with the request location id

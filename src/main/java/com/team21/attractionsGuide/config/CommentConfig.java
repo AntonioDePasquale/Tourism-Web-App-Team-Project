@@ -36,7 +36,7 @@ public class CommentConfig {
                 new Comment("Alex", 1,  "Yo this place sucks!", "newcastle-02")
 
             ));
-    
+
             try {
                 repository.saveAll(testComments); //save all test comments to the CommentRepository
             } catch (Exception e) {
