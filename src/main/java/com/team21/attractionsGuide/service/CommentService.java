@@ -1,5 +1,6 @@
 package com.team21.attractionsGuide.service;
 
+import com.team21.attractionsGuide.Error.CommentWithTheLocationIdNotFoundException;
 import com.team21.attractionsGuide.entity.Comment;
 import com.team21.attractionsGuide.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,10 @@ public class CommentService {
      * Takes data from a frontend form and formats it into a comment object, then adds to the repository
      *
      * @param comment- The comment object to be added
+     * @return
      */
-    public void createComment(Comment comment) {
-        commentRepository.save(comment);
+    public Comment createComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     /**
@@ -51,6 +53,25 @@ public class CommentService {
     public Optional<Comment> findCommentById(Long id) {
         return commentRepository.findById(id);
     }
+
+
+
+    /**
+     * To find all the comments that match the locationId
+     * @param locationId
+     * @returnall the comments that match the locationId
+     * @throws CommentWithTheLocationIdNotFoundException
+     */
+    public List<Comment> findCommentByLocationId(String locationId) throws CommentWithTheLocationIdNotFoundException {
+        List<Comment> comments = commentRepository.findBylocationId(locationId);
+        if (comments.isEmpty()) {
+            throw new CommentWithTheLocationIdNotFoundException("No comments found for location ID: " + locationId);
+        }
+        return comments;
+    }
+
+
+
 
     /**
      * Updates a comment with new data

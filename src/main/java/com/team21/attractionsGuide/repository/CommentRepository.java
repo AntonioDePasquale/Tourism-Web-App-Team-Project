@@ -4,6 +4,8 @@ import com.team21.attractionsGuide.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Description: Repository for the Comment objects to be stored in the database.
  * Extends JpaRepository to get additional functionality.
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
+    List<Comment> findBylocationId(String locationID);
 }
 
 
