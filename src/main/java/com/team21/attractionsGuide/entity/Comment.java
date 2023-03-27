@@ -26,7 +26,7 @@ public class Comment {
     @NotBlank(message = "Name can't be blank")
     private String name;
 
-    @NotNull(message = "Name can't be blank")
+    @NotNull(message = "Rating can't be blank")
     @Min(value = 1,  message = "Rating must be at least 1")
     @Max(value = 5, message = "Rating must not larger than 5")
     private Integer rating;
