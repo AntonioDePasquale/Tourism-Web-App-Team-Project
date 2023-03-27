@@ -1,6 +1,6 @@
 package com.team21.attractionsGuide.service;
 
-import com.team21.attractionsGuide.Error.CommentWithTheLocationIdNotFoundException;
+import com.team21.attractionsGuide.error.CommentWithTheLocationIdNotFoundException;
 import com.team21.attractionsGuide.entity.Comment;
 import com.team21.attractionsGuide.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

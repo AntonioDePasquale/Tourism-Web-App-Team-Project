@@ -31,6 +31,7 @@ public class Comment {
     @Max(value = 5, message = "Rating must not larger than 5")
     private Integer rating;
 
+    @NotNull
     private LocalDateTime commentDateTime;
 
     @NotBlank(message = "comment can't be blank")
@@ -43,8 +44,11 @@ public class Comment {
 
     /**
      * No-arg constructor - required by JPA.
+     * set the commentDateTime field explicitly to ensure that the
+     * field is set correctly.when deserialization of JSON POST requests
      */
     public Comment() {
+        this.commentDateTime = LocalDateTime.now();
     }
 
     /**
@@ -60,9 +64,9 @@ public class Comment {
     public Comment(String name, Integer rating, String commentText,String locationId) {
         this.name = name;
         this.rating = rating;
-        this.commentDateTime = LocalDateTime.now();
         this.commentText = commentText;
         this.locationId = locationId;
+        this.commentDateTime = LocalDateTime.now();
     }
 
     /**
@@ -80,7 +84,7 @@ public class Comment {
 
 
     public LocalDateTime getCommentDateTime() { return commentDateTime; }
-    private void setCommentDateTime(LocalDateTime commentDateTime) { this.commentDateTime = commentDateTime; }
+    //private void setCommentDateTime(LocalDateTime commentDateTime) { this.commentDateTime = commentDateTime; }
 
 
     public String getCommentText() { return commentText; }
@@ -93,6 +97,10 @@ public class Comment {
     public void setLocationId(String locationId) {
         this.locationId = locationId;
     }
+
+
+
+
 
     /**
      * Override default toString method.

@@ -1,6 +1,6 @@
 package com.team21.attractionsGuide.controller;
 
-import com.team21.attractionsGuide.Error.CommentWithTheLocationIdNotFoundException;
+import com.team21.attractionsGuide.error.CommentWithTheLocationIdNotFoundException;
 import com.team21.attractionsGuide.entity.Comment;
 import com.team21.attractionsGuide.service.CommentService;
 import jakarta.validation.Valid;

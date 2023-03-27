@@ -1,4 +1,4 @@
-package com.team21.attractionsGuide.Error;
+package com.team21.attractionsGuide.error;
 
 import org.springframework.http.HttpStatus;
 
