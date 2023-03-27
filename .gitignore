@@ -6,3 +6,4 @@ logs/
 .DS_Store
 log
 temp/
+src/main/resources/config/application-dev.yml
