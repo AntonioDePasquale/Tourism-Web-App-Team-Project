@@ -25,22 +25,22 @@ public class CommentConfig {
      * This particular Bean method is called commandLineRunner, which takes the input of the CommentRepository implementation class and returns an implementation of CommandLineRunner.
      * When the application starts up, this CommandLineRunner will execute its run() method which populates the database with test data.
      */
-    @Bean
-    CommandLineRunner commandLineRunner(CommentRepository repository) {
-        return args -> {
-            //creates a list of test comments
-            List<Comment> testComments = new ArrayList<>(List.of(
-//                new Comment("Tony", 5, 5, "my comment", "Hello my name is tony and this place is great!"),
-//                new Comment("Alex", 1, 21, "don't go here", "Yo this place sucks!")
-                    new Comment("Tony", 5,  "Hello my name is tony and this place is great!", "newcastle-01"),
-                new Comment("Alex", 1,  "Yo this place sucks!", "newcastle-02")
-
-            ));
-
-            try {
-                repository.saveAll(testComments); //save all test comments to the CommentRepository
-            } catch (Exception e) {
-            }
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(CommentRepository repository) {
+//        return args -> {
+//            //creates a list of test comments
+//            List<Comment> testComments = new ArrayList<>(List.of(
+////                new Comment("Tony", 5, 5, "my comment", "Hello my name is tony and this place is great!"),
+////                new Comment("Alex", 1, 21, "don't go here", "Yo this place sucks!")
+//                    new Comment("Tony", 5,  "Hello my name is tony and this place is great!", "newcastle-01"),
+//                new Comment("Alex", 1,  "Yo this place sucks!", "newcastle-02")
+//
+//            ));
+//
+//            try {
+//                repository.saveAll(testComments); //save all test comments to the CommentRepository
+//            } catch (Exception e) {
+//            }
+//        };
+//    }
 }

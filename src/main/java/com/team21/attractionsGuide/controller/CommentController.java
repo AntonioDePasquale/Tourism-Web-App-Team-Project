@@ -51,7 +51,7 @@ public class CommentController {
      * @return all the comments by location
      */
     @GetMapping("/{locationId}")
-    public List<Comment> getCommentsById( @PathVariable("locationId") String locationId) throws CommentWithTheLocationIdNotFoundException {
+    public List<Comment> getCommentsByLocationId(@PathVariable("locationId") String locationId) throws CommentWithTheLocationIdNotFoundException {
         return commentService.findCommentByLocationId(locationId);
     }
 
