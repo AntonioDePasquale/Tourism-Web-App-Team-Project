@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import com.team21.attractionsGuide.entity.Place;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,20 +92,22 @@ public class GoogleMapService {
      * Function used to merge two Json strings, the first string is prioritised in case of key collisions.
      * Uses the jackson library for object mapper functionality
      *
-     * @param first      - the first Json string to merge
-     * @param second     - the second Json string to merge
+     * @param tempArray results collection of all types
      * @return A JSON string containing the merged keys and values of the two strings
      */
-    public String mergeJsonStrings(String first, String second) throws JsonProcessingException {
+    public String mergeJsonStrings(ArrayList<String> tempArray) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> mergedMap = new HashMap<>();
+        mergedMap.put("status", "OK");
+        ArrayList<Object> mergedResult = new ArrayList<Object>();
 
-        Map<String, Object> firstMap = mapper.readValue(first, Map.class);
-        Map<String, Object> secondMap = mapper.readValue(first, Map.class);
-        Map<String, Object> mergedMap = new HashMap<String, Object>(secondMap);
-
-        mergedMap.putAll(firstMap);
-
+        for (int i = 0; i < tempArray.size(); i ++) {
+            Map<String, Object> tmpResp = mapper.readValue(tempArray.get(i), Map.class);
+            ArrayList<Object> tmpRespResults = (ArrayList<Object>) tmpResp.get("results");
+            mergedResult.addAll(tmpRespResults);
+        }
+        mergedMap.put("results", mergedResult);
         String result = mapper.writeValueAsString(mergedMap);
 
         return result;

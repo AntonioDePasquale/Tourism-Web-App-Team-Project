@@ -38,20 +38,25 @@ public class PlaceController {
     public String getNearbyPlaces(
 
             // Get parameters from the url
-            // eg. /place/getNearbyAttractions?latitude=1&longitude=2, get '1' and '2'
+            // eg. /place/getNearbyAttractions?latitude=1&longitude=2&placeType=library|museum
             @RequestParam double latitude,
-            @RequestParam double longitude
+            @RequestParam double longitude,
+            @RequestParam(required = false) String placeType
 
     ) throws JsonProcessingException {
-        // TODO: Valid the parameters, springboot will check the type automatically.
-        //  We should valid them logically.
 
-        //Map of place types we wish to return from the nearby places API
+        // Map of place types we wish to return from the nearby places API
+        // Get types from front-end
         Map<String, String> placeTypes = new HashMap<>();
-        placeTypes.put("type1", "museum");
-        placeTypes.put("type2", "park");
-        placeTypes.put("type3", "point_of_interest");
-        placeTypes.put("type4", "library");
+        // if front-end did not give types, default value 'library'
+        if (placeType != null) {
+            String[] types = placeType.split("|");
+            for (int i = 0; i < types.length; i ++) {
+                placeTypes.put("type" + i, types[i]);
+            }
+        } else {
+            placeTypes.put("type1", "library");
+        }
 
         //initialise an array of type String to store Json strings from the API
         ArrayList<String> tempStringArray = new ArrayList<String>();
@@ -66,18 +71,8 @@ public class PlaceController {
                 tempStringArray.add(tempString);
         }
 
-        //takes two Strings from the tempStringArray and merges them into one
-        //The 1st and 2nd indexes are merged, the merged Json is set to the place of the 2nd Json
-        //the for loop continues and the now merged Json set to index 2 is to be merged with index 3
-        for (int i = 0; i < tempStringArray.size() - 1; i++) {
-            String firstJson = tempStringArray.get(i);
-            String secondJson = tempStringArray.get(i + 1);
-
-            tempStringArray.set(i + 1, googleService.mergeJsonStrings(firstJson, secondJson));
-        }
-
         //String containing merged Json of all requests
-        String mergedJson = tempStringArray.get(tempStringArray.size() - 1);
+        String mergedJson = googleService.mergeJsonStrings(tempStringArray);
 
         // Respond with merged Json
         return mergedJson;
