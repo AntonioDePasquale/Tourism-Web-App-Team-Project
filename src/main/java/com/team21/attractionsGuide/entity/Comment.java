@@ -1,6 +1,12 @@
 package com.team21.attractionsGuide.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.aspectj.bridge.Message;
+
 import java.time.LocalDateTime;
 
 /**
@@ -15,17 +21,34 @@ public class Comment {
     private Long id;
 
     // Fields used throughout the class
+
+
+    @NotBlank(message = "Name can't be blank")
     private String name;
+
+    @NotNull(message = "Rating can't be blank")
+    @Min(value = 1,  message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must not larger than 5")
     private Integer rating;
-    private String commentTitle;
+
+    @NotNull
     private LocalDateTime commentDateTime;
-    private Integer age;
+
+    @NotBlank(message = "comment can't be blank")
     private String commentText;
+
+    @NotBlank(message = "Location Id can't be blank")
+    private String locationId;
+    //private Integer age;
+    //private String commentTitle;
 
     /**
      * No-arg constructor - required by JPA.
+     * set the commentDateTime field explicitly to ensure that the
+     * field is set correctly.when deserialization of JSON POST requests
      */
     public Comment() {
+        this.commentDateTime = LocalDateTime.now();
     }
 
     /**
@@ -33,17 +56,17 @@ public class Comment {
      * 
      * @param name - The name of the person who created the comment
      * @param rating - The numerical rating the comment gives
-     * @param age - The age of the person who created the comment
-     * @param commentTitle - The title of the comment left
+     * //@param age - The age of the person who created the comment
+     * //@param commentTitle - The title of the comment left
      * @param commentText - The main text of the comment left
+     * @param locationId - The id correspond of the location
      */
-    public Comment(String name, Integer rating, Integer age, String commentTitle, String commentText) {
+    public Comment(String name, Integer rating, String commentText,String locationId) {
         this.name = name;
         this.rating = rating;
-        this.commentTitle = commentTitle;
-        this.commentDateTime = LocalDateTime.now();
-        this.age = age;
         this.commentText = commentText;
+        this.locationId = locationId;
+        this.commentDateTime = LocalDateTime.now();
     }
 
     /**
@@ -59,17 +82,24 @@ public class Comment {
     public Integer getRating() { return rating; }
     public void setRating(Integer rating) { this.rating = rating; }
 
-    public String getCommentTitle() { return commentTitle; }
-    public void setCommentTitle(String commentTitle) { this.commentTitle = commentTitle; }
 
     public LocalDateTime getCommentDateTime() { return commentDateTime; }
-    private void setCommentDateTime(LocalDateTime commentDateTime) { this.commentDateTime = commentDateTime; }
+    //private void setCommentDateTime(LocalDateTime commentDateTime) { this.commentDateTime = commentDateTime; }
 
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
 
     public String getCommentText() { return commentText; }
     public void setCommentText(String commentText) { this.commentText = commentText; }
+
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
+    }
+
+
+
 
 
     /**
@@ -78,14 +108,12 @@ public class Comment {
      */
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", rating='" + rating + '\'' +
-                ", commentTitle=" + commentTitle + '\'' +
-                ", commentDateTime=" + commentDateTime + '\'' +
-                ", age=" + age + '\'' +
-                ", commentText=" + commentText +
+        return "Comment{" +
+                "name='" + name + '\'' +
+                ", rating=" + rating +
+                ", commentDateTime=" + commentDateTime +
+                ", commentText='" + commentText + '\'' +
+                ", locationId='" + locationId + '\'' +
                 '}';
     }
 }

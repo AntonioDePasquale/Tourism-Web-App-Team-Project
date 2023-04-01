@@ -1,10 +1,10 @@
 package com.team21.attractionsGuide.controller;
 
+import com.team21.attractionsGuide.error.CommentWithTheLocationIdNotFoundException;
 import com.team21.attractionsGuide.entity.Comment;
 import com.team21.attractionsGuide.service.CommentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,8 +39,24 @@ public class CommentController {
      *
      * @return a list of Comment objects
      */
-    @GetMapping
+    @GetMapping("/")
     public List<Comment> getComments() {
         return commentService.getComments();
+    }
+
+
+    /**
+     * To return all the comments by location id
+     * @param locationId
+     * @return all the comments by location
+     */
+    @GetMapping("/{locationId}")
+    public List<Comment> getCommentsByLocationId(@PathVariable("locationId") String locationId) throws CommentWithTheLocationIdNotFoundException {
+        return commentService.findCommentByLocationId(locationId);
+    }
+
+    @PostMapping("/")
+    public Comment insertComment(@Valid @RequestBody Comment comment){
+         return commentService.createComment(comment);
     }
 }
