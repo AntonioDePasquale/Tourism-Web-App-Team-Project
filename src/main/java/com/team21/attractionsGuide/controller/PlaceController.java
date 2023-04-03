@@ -50,14 +50,13 @@ public class PlaceController {
         Map<String, String> placeTypes = new HashMap<>();
         // if front-end did not give types, default value 'library'
         if (placeType != null) {
-            String[] types = placeType.split("|");
+            String[] types = placeType.split(",");
             for (int i = 0; i < types.length; i ++) {
                 placeTypes.put("type" + i, types[i]);
             }
         } else {
             placeTypes.put("type1", "library");
         }
-
         //initialise an array of type String to store Json strings from the API
         ArrayList<String> tempStringArray = new ArrayList<String>();
 
@@ -73,6 +72,12 @@ public class PlaceController {
 
         //String containing merged Json of all requests
         String mergedJson = googleService.mergeJsonStrings(tempStringArray);
+
+        // TODO: Convert mergedJson into PlaceResponse instances
+        // So it will be easy to do other works, such as
+        // removing duplicates, changing their 'types', loading them into database etc.
+
+
 
         // Respond with merged Json
         return mergedJson;
