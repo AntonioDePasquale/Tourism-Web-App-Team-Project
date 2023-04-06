@@ -2,8 +2,7 @@ package com.team21.attractionsGuide.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.team21.attractionsGuide.entity.Place;
+import com.team21.attractionsGuide.entity.PlaceAutoComplete;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.Map;
 public class GoogleMapService {
 
     //map to add formatted places into using the
-    final Map<Integer, Place> placesMap = new HashMap<Integer, Place>();
+    final Map<Integer, PlaceAutoComplete> placesMap = new HashMap<Integer, PlaceAutoComplete>();
     final String apiKey = "AIzaSyCOVP27tJRVNkn4D9BxLo6oap9nM3V-lVA";
 
     /**
