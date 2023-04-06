@@ -1,10 +1,11 @@
 package com.team21.attractionsGuide.error;
 
 import org.springframework.http.HttpStatus;
-
 /**
  * A custom error message class that contains a message and an HTTP status code.
  * use in the RestRespondExceptionHandler
+ * @author Hei Lam
+ * @since  06/04/2023
  */
 public class ErrorMessage {
 
