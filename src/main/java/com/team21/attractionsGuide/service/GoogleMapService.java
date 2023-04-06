@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * A class that provides services for the PlacesController
+ * @since 2023/04/06
+ */
 public class GoogleMapService {
 
     //map to add formatted places into using the

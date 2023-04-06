@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * A class representing a PlaceAutoComplete object used to represent the data from the placeAutoComplete API call
- * Date: 2023/04/06
+ * @since 2023/04/06
  */
 
 //all properties not defined are ignored by Jackson
@@ -116,7 +116,7 @@ public class PlaceAutoComplete {
 
     /**
      * override of the default toString method
-     * @return a string representation of the Place object
+     * @return a string representation of the PlaceAutoComplete object
      */
     @Override
     public String toString() {
