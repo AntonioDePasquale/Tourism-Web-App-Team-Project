@@ -8,10 +8,12 @@ import jakarta.validation.constraints.NotNull;
 import org.aspectj.bridge.Message;
 
 import java.time.LocalDateTime;
-
 /**
- * A class representing a Comment object
+ * This class representing a Comment object
+ * @author Antonio De Pasquale, Tong Wu, Hei Lam
+ * @since  06/04/2023
  */
+
 @Entity
 @Table(name = "comment")
 public class Comment {

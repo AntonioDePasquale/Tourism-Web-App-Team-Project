@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Description: Repository for the Comment objects to be stored in the database.
  * Extends JpaRepository to get additional functionality.
- *
+ * @author Antonio De Pasquale, Tong Wu, Hei Lam
  * Date: 2023/3/25
  */
 @Repository
