@@ -4,7 +4,7 @@ package com.team21.attractionsGuide.error;
 /**
  * This class is a custom exception *   will be thrown when no comment is match with the request location id
  * @author Hei Lam
- * @since  06/04/2023
+ * Date:  06/04/2023
  */
 
 public class CommentWithTheLocationIdNotFoundException extends Exception {
