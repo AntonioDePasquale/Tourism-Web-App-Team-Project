@@ -64,12 +64,15 @@ public class Place {
     @JsonProperty
     private Object geometry;
 
+    @JsonProperty
+    private Object opening_hours;
+
     /**
      * Constructor with parameters
      * @return returns a Place object
      */
 
-    public Place(String name, String place_id, List address_components, String formatted_address, String business_status, String formatted_phone_number, List photos, Integer rating, Integer price_level, List types, String url, Object editorial_summary, String website, Object geometry) {
+    public Place(String name, String place_id, List address_components, String formatted_address, String business_status, String formatted_phone_number, List photos, Integer rating, Integer price_level, List types, String url, Object editorial_summary, String website, Object geometry, Object opening_hours) {
         this.name = name;
         this.place_id = place_id;
         this.address_components = address_components;
@@ -84,6 +87,7 @@ public class Place {
         this.editorial_summary = editorial_summary;
         this.website = website;
         this.geometry = geometry;
+        this.opening_hours = opening_hours;
     }
 
     /**
@@ -206,6 +210,14 @@ public class Place {
 
     public void setGeometry(Object geometry) {
         this.geometry = geometry;
+    }
+
+    public Object getOpening_hours() {
+        return opening_hours;
+    }
+
+    public void setOpening_hours(Object opening_hours) {
+        this.opening_hours = opening_hours;
     }
 
     /**

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team21.attractionsGuide.entity.PlaceAutoComplete;
 import com.team21.attractionsGuide.entity.Place;
-import com.team21.attractionsGuide.entity.PlaceDetail;
 import com.team21.attractionsGuide.service.GoogleMapService;
 import org.springframework.web.bind.annotation.*;
 
@@ -148,7 +147,7 @@ public class PlacesController {
         String respString = googleService.getPlaceDetailsApiString(placeID);
 
         //format into PlaceDetails object
-        PlaceDetail place = PlaceDetail.formatPlaceDetailsResult(respString);
+        Place place = Place.formatPlaceDetailsResult(respString);
 
         // Respond with json
         ObjectMapper mapper = new ObjectMapper();
