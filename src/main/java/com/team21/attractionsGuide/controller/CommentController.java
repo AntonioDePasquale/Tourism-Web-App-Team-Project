@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * CommentController class handles HTTP requests related to comments
  * @author Antonio De Pasquale, Tong Wu, Hei Lam
- * @since  06/04/2023
+ * Date:  06/04/2023
  */
 
 @RestController
