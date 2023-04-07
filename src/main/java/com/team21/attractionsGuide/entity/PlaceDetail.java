@@ -3,7 +3,9 @@ package com.team21.attractionsGuide.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -12,22 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class representing a Place object used to represent the data from the nearbySearch API call and getDetails
- * @since 2023/04/06
+ * A class representing a Place Detail object used to represent the data from the get detail api
+ * @since 2023/04/07
  */
 
 //all properties not defined are ignored by Jackson
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Place {
+public class PlaceDetail {
 
     @JsonProperty
     private String name;
-
-    @JsonProperty
-    private String place_id;
-
-    @JsonProperty
-    private List address_components = new ArrayList();
 
     @JsonProperty
     private String formatted_address;
@@ -36,7 +32,16 @@ public class Place {
     private String business_status;
 
     @JsonProperty
+    private List address_components = new ArrayList();
+
+    @JsonProperty
     private String formatted_phone_number;
+
+    @JsonProperty
+    private String place_id;
+
+    @JsonProperty
+    private Object geometry = new Object();
 
     @JsonProperty
     private List photos = new ArrayList();
@@ -62,14 +67,14 @@ public class Place {
     private String website;
 
     @JsonProperty
-    private Object geometry;
+    private OpeningHours opening_hours = new OpeningHours();
 
     /**
      * Constructor with parameters
      * @return returns a Place object
      */
 
-    public Place(String name, String place_id, List address_components, String formatted_address, String business_status, String formatted_phone_number, List photos, Integer rating, Integer price_level, List types, String url, Object editorial_summary, String website, Object geometry) {
+    public PlaceDetail(String name, String place_id, List address_components, String formatted_address, String business_status, String formatted_phone_number, List photos, Integer rating, Integer price_level, List types, String url, Object editorial_summary, String website, OpeningHours opening_hours, Object geometry) {
         this.name = name;
         this.place_id = place_id;
         this.address_components = address_components;
@@ -83,13 +88,14 @@ public class Place {
         this.url = url;
         this.editorial_summary = editorial_summary;
         this.website = website;
+        this.opening_hours = opening_hours;
         this.geometry = geometry;
     }
 
     /**
      * a no-arg constructor as required by Jackson to serialise JSON data into a Place Object
      */
-    public Place() {}
+    public PlaceDetail() {}
 
     /**
      * Setters and Getters for the Place Object
@@ -200,6 +206,14 @@ public class Place {
         this.website = website;
     }
 
+    public OpeningHours getOpening_hours() {
+        return opening_hours;
+    }
+
+    public void setOpening_hours(OpeningHours opening_hours) {
+        this.opening_hours = opening_hours;
+    }
+
     public Object getGeometry() {
         return geometry;
     }
@@ -230,6 +244,8 @@ public class Place {
 
             //iterate the contents of the results array
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
             for (int i=0; i < jsonArray.size(); i++) {
                 String placeJson = jsonArray.get(i).toString();
@@ -253,10 +269,10 @@ public class Place {
      * @return a POJO Place object
      * @throws JsonProcessingException
      */
-    public static Place formatPlaceDetailsResult(String response) throws JsonProcessingException {
+    public static PlaceDetail formatPlaceDetailsResult(String response) throws JsonProcessingException {
 
         //initialise an empty PlaceDetails object
-        Place details = new Place();
+        PlaceDetail details = new PlaceDetail();
 
         try {
 
@@ -272,7 +288,7 @@ public class Place {
             String placeDetailsJson = jsonObject.toString();
 
             //map the result object from the JSON string to the PlaceDetails Object
-            details = objectMapper.readValue(placeDetailsJson, Place.class);
+            details = objectMapper.readValue(placeDetailsJson, PlaceDetail.class);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -301,6 +317,7 @@ public class Place {
                 ", url='" + url + '\'' +
                 ", editorial_summary=" + editorial_summary +
                 ", website='" + website + '\'' +
+                ", opening_hours=" + opening_hours +
                 '}';
     }
 }

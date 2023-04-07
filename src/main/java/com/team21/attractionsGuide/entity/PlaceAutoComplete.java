@@ -28,16 +28,20 @@ public class PlaceAutoComplete {
     private String place_id;
     @JsonProperty
     private List types = new ArrayList<>();
+    @JsonProperty
+    private Object structured_formatting;
+
 
     /**
      * Constructor with parameters
      * @return returns a PlaceAutoComplete object
      */
-    public PlaceAutoComplete(String description, Integer distanceMetres, String placeID, List types) {
+    public PlaceAutoComplete(String description, Integer distanceMetres, String placeID, List types, Object structured_formatting) {
         this.description = description;
         this.distance_meters = distanceMetres;
         this.place_id = placeID;
         this.types = types;
+        this.structured_formatting = structured_formatting;
     }
 
     /**
@@ -78,6 +82,15 @@ public class PlaceAutoComplete {
     public void setPlaceTypes(List placeTypes) {
         this.types = placeTypes;
     }
+
+    public Object getStructured_formatting() {
+        return structured_formatting;
+    }
+
+    public void setStructured_formatting(Object structured_formatting) {
+        this.structured_formatting = structured_formatting;
+    }
+
 
     /**
      * A function that deserializes a JSON string from the getDetails API into a POJO PlaceAutoComplete object
