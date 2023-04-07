@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * This class representing a Comment object
  * @author Antonio De Pasquale, Tong Wu, Hei Lam
- * @since  06/04/2023
+ * Date:  06/04/2023
  */
 
 @Entity
