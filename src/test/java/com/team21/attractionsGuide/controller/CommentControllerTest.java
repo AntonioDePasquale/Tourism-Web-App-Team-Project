@@ -29,6 +29,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+/**
+ * The CommentControllerTest is to test the controller layer of this application
+ * @author Hei Lam
+ * @since  06/04/2023
+ */
 
 @WebMvcTest(CommentController.class)
 class CommentControllerTest {

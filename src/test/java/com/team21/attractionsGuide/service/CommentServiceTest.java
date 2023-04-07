@@ -15,7 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * The CommentServiceTest is to test the service layer of this application
+ *
+ * @author Hei Lam
+ * @since  06/04/2023
+ */
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // disable Spring's autoconfiguration of the test database

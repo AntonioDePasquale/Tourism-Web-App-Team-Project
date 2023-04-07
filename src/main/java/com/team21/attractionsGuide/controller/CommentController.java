@@ -7,11 +7,12 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 /**
  * CommentController class handles HTTP requests related to comments
- * Date: 2023/3/25
+ * @author Antonio De Pasquale, Tong Wu, Hei Lam
+ * @since  06/04/2023
  */
+
 @RestController
 @RequestMapping("/comments")
 public class CommentController {

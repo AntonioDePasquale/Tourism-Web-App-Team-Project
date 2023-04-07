@@ -8,10 +8,12 @@ import jakarta.validation.constraints.NotNull;
 import org.aspectj.bridge.Message;
 
 import java.time.LocalDateTime;
-
 /**
- * A class representing a Comment object
+ * This class representing a Comment object
+ * @author Antonio De Pasquale, Tong Wu, Hei Lam
+ * @since  06/04/2023
  */
+
 @Entity
 @Table(name = "comment")
 public class Comment {
@@ -31,7 +33,11 @@ public class Comment {
     @Max(value = 5, message = "Rating must not larger than 5")
     private Integer rating;
 
+    // The commentDateTime field is set to use the MySQL CURRENT_TIMESTAMP function
+    // to ensure that the database server's system time is used instead of the
+    // client machine's system time.
     @NotNull
+    @Column(name = "comment_date_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime commentDateTime;
 
     @NotBlank(message = "comment can't be blank")

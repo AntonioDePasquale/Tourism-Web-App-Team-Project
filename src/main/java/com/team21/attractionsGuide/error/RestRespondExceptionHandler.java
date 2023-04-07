@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 /**
  * This class handles exceptions thrown by REST API requests and generates custom error responses.
+ * @author Hei Lam
+ * @since  06/04/2023
  */
 @ControllerAdvice
 @ResponseStatus
