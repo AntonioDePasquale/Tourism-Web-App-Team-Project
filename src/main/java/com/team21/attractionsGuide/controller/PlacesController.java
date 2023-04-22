@@ -16,7 +16,6 @@ import java.util.Map;
  * Date: 2023/3/26
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/place")
 public class PlacesController {
 
@@ -77,6 +76,9 @@ public class PlacesController {
 
         //format the response string into a place details Object
         ArrayList<Place> placeResponseArray = Place.formatPlacesResult(mergedJson);
+
+        // remove duplicate items by place_id
+
 
         // Respond with json
         ObjectMapper mapper = new ObjectMapper();
