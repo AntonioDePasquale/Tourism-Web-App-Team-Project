@@ -48,7 +48,7 @@ public class Place {
     private Integer price_level;
 
     @JsonProperty
-    private List types = new ArrayList();
+    private List types = new ArrayList<String>();
 
     //official google page url (application must link this page on screen due to the google API agreement)
     @JsonProperty
