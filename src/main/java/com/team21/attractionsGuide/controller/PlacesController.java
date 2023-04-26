@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team21.attractionsGuide.entity.PlaceAutoComplete;
 import com.team21.attractionsGuide.entity.Place;
+import com.team21.attractionsGuide.entity.PlaceExtra;
 import com.team21.attractionsGuide.service.GoogleMapService;
+import com.team21.attractionsGuide.service.PlaceExtraService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,7 +25,16 @@ public class PlacesController {
     /**
      * GoogleMapService is used for handling place-related business logic.
      */
-    private GoogleMapService googleService = new GoogleMapService();
+    private final GoogleMapService googleService = new GoogleMapService();
+    private final PlaceExtraService placeExtraService;
+
+    /**
+     * Constructor, injecting the implementation of PlaceExtraService as a dependency.
+     * @param pes service instance
+     */
+    public PlacesController(PlaceExtraService pes) {
+        this.placeExtraService = pes;
+    }
 
     /**
      * Creates a Place Nearby Search API request using frontend data with a service function for each type specified.
@@ -106,8 +117,6 @@ public class PlacesController {
             @RequestParam Integer radius
 
     ) throws JsonProcessingException {
-        // TODO: Valid the parameters, springboot will check the type automatically.
-        //  We should valid them logically.
 
         // handle by GoogleMapService class
         String respString = googleService.getAutocompletePlacesApiString(input, latitude, longitude, radius);
@@ -139,8 +148,6 @@ public class PlacesController {
             @RequestParam String placeID
 
     ) throws JsonProcessingException {
-        // TODO: Valid the parameters, springboot will check the type automatically.
-        //  We should valid them logically.
 
         // handle by GoogleMapService class
         String respString = googleService.getPlaceDetailsApiString(placeID);
@@ -148,12 +155,30 @@ public class PlacesController {
         //format into PlaceDetails object
         Place place = Place.formatPlaceDetailsResult(respString);
 
+        // change the type of place
         place = reassignPlaceType(place);
 
         // Respond with json
         ObjectMapper mapper = new ObjectMapper();
-
         return mapper.writeValueAsString(place);
+    }
+
+    /**
+     * give the other information about the place that google map does not have.
+     * @param placeID place_id from google map
+     * @return PlaceExtra json
+     * @throws JsonProcessingException json decode error
+     */
+    @GetMapping(value = "/getExtraInfo", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getPlaceExtraInfo(@RequestParam String placeID) throws JsonProcessingException {
+        PlaceExtra pe = placeExtraService.findPlaceExtraByLocationId(placeID);
+        System.out.println(pe);
+        if (pe != null) {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(pe);
+        }
+        return "{}";
     }
 
     /**
@@ -201,6 +226,14 @@ public class PlacesController {
         return p;
     }
 
-
+    /**
+     * Find other information store in database, like accessibility information
+     * @param placeID
+     * @return
+     */
+    private PlaceExtra getExtraInfo(String placeID) {
+        PlaceExtra p = placeExtraService.findPlaceExtraByLocationId(placeID);
+        return p;
+    }
 
 }

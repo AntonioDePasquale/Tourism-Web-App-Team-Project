@@ -1,0 +1,44 @@
+# To run the mysql database setting in your local host
+#server:
+#  port: 8001
+#
+#logging:
+#  level:
+#    root: info
+#  file:
+#    name: logs/system.log
+#
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    show-sql: true
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/comments
+#    username: root
+#    password: abc123
+
+#<------------------------------------------------------------------------------>
+
+# Aws mysql database setting
+server:
+  port: 8001
+
+logging:
+  level:
+    root: info
+  file:
+    name: logs/system.log
+
+spring:
+  jpa:
+    hibernate:
+      # 'Update' is better for production environment
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://team-21-database.cfire0z0jguy.eu-north-1.rds.amazonaws.com:3306/comments
+    username: admin
+    password: NEWCASTLE
