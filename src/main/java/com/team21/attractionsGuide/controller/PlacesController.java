@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -37,15 +38,12 @@ public class PlacesController {
     @ResponseBody
 
     public String getNearbyPlaces(
-
             // Get parameters from the url
             // eg. /place/getNearbyAttractions?latitude=1&longitude=2&placeType=library|museum
             @RequestParam double latitude,
             @RequestParam double longitude,
             @RequestParam(required = false) String placeType
-
     ) throws JsonProcessingException {
-
         // Map of place types we wish to return from the nearby places API
         // Get types from front-end
         Map<String, String> placeTypes = new HashMap<>();
@@ -60,29 +58,28 @@ public class PlacesController {
         }
         //initialise an array of type String to store Json strings from the API
         ArrayList<String> tempStringArray = new ArrayList<String>();
-
         //for each map entry, use the value as a type param in the getNearbyPlacesApiString service function
         for (var entry : placeTypes.entrySet()) {
-
                 String type = entry.getValue();
                 String tempString = googleService.getNearbyPlacesApiString(latitude, longitude, type);
-
                 //add each Json String to an array of Json Strings
                 tempStringArray.add(tempString);
         }
-
         //String containing merged Json of all requests
         String mergedJson = googleService.mergeJsonStrings(tempStringArray);
-
         //format the response string into a place details Object
         ArrayList<Place> placeResponseArray = Place.formatPlacesResult(mergedJson);
 
         // remove duplicate items by place_id
-
-
+        placeResponseArray = removeDuplicatedPlace(placeResponseArray);
+        // reassign place's type (history building)
+        for (int i = 0; i < placeResponseArray.size(); i ++) {
+            Place p = placeResponseArray.get(i);
+            p = reassignPlaceType(p);
+            placeResponseArray.set(i, p);
+        }
         // Respond with json
         ObjectMapper mapper = new ObjectMapper();
-
         return mapper.writeValueAsString(placeResponseArray);
     }
 
@@ -151,9 +148,59 @@ public class PlacesController {
         //format into PlaceDetails object
         Place place = Place.formatPlaceDetailsResult(respString);
 
+        place = reassignPlaceType(place);
+
         // Respond with json
         ObjectMapper mapper = new ObjectMapper();
 
         return mapper.writeValueAsString(place);
     }
+
+    /**
+     * Remove duplicated places by place_id
+     * @param places      - ArrayList. all places to be returned.
+     * @return            - ArrayList
+     */
+    private ArrayList<Place> removeDuplicatedPlace(ArrayList<Place> places) {
+        ArrayList<Place> ret = new ArrayList<Place>();
+        HashSet<String> placeIDs = new HashSet<String>();
+        for (int i = 0; i < places.size(); i ++) {
+            Place p = places.get(i);
+            if (!placeIDs.contains(p.getPlaceID())) {
+                ret.add(p);
+                placeIDs.add(p.getPlaceID());
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * If a place name contains "church, castle, ancient...", we assume that it is a history building.
+     * @param p         - A place instance.
+     * @return          - A place instance with correct type
+     */
+    private Place reassignPlaceType(Place p) {
+        ArrayList<String> targets = new ArrayList<>();
+        // some iconic history building name
+        targets.add("abbey");
+        targets.add("castle");
+        targets.add("church");
+        targets.add("cathedral");
+        targets.add("palace");
+        targets.add("chapel");
+        String name = p.getName().toLowerCase();
+        for (int i = 0; i < targets.size(); i ++) {
+            if (name.contains(targets.get(i))) {
+                // yes we think it is a history building
+                ArrayList<String> originTypes = (ArrayList<String>) p.getTypes();
+                originTypes.add("history_building");
+                p.setTypes(originTypes);
+                break;
+            }
+        }
+        return p;
+    }
+
+
+
 }
