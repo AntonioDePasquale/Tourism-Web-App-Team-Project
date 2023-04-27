@@ -79,27 +79,73 @@ public class Comment {
      * Getters and setters for the fields of the Comment object
      */
 
+    /**
+     * get id
+     * @return
+     */
     public Long getId() { return id;}
+
+    /**
+     * set id
+     * @param id
+     */
     private void setId(Long id) { this.id = id; }
 
+    /**
+     * get name
+     * @return
+     */
     public String getName() { return name; }
+
+    /**
+     * set name
+     * @param name
+     */
     public void setName(String name) { this.name = name; }
 
+    /**
+     * get rating
+     * @return
+     */
     public Integer getRating() { return rating; }
+
+    /**
+     * set rating
+     * @param rating
+     */
     public void setRating(Integer rating) { this.rating = rating; }
 
-
+    /**
+     * get local date time
+     * @return
+     */
     public LocalDateTime getCommentDateTime() { return commentDateTime; }
     //private void setCommentDateTime(LocalDateTime commentDateTime) { this.commentDateTime = commentDateTime; }
 
-
+    /**
+     * get comment content
+     * @return
+     */
     public String getCommentText() { return commentText; }
+
+    /**
+     * set comment content
+     * @param commentText
+     */
     public void setCommentText(String commentText) { this.commentText = commentText; }
 
+    /**
+     * get location id( place_id)
+     * @return
+     */
     public String getLocationId() {
         return locationId;
     }
 
+    /**
+     * set location id (place_id)
+     * @param locationId
+     */
     public void setLocationId(String locationId) {
         this.locationId = locationId;
     }

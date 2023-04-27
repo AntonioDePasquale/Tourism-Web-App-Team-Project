@@ -36,7 +36,6 @@ public class PlacesController {
      */
     @GetMapping(value = "/getNearbyAttractions", produces = "application/json;charset=UTF-8")
     @ResponseBody
-
     public String getNearbyPlaces(
             // Get parameters from the url
             // eg. /place/getNearbyAttractions?latitude=1&longitude=2&placeType=library|museum

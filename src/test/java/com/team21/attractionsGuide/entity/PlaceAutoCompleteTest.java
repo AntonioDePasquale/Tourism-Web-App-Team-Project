@@ -10,8 +10,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Test class for PlaceAutoComplete
+ */
 public class PlaceAutoCompleteTest {
 
+    /**
+     * test getters and setters
+     */
     @Test
     public void testPlaceAutoCompleteConstructorAndGetters() {
         String description = "Test Place";
@@ -30,6 +36,10 @@ public class PlaceAutoCompleteTest {
         assertEquals(structuredFormatting, place.getStructured_formatting());
     }
 
+    /**
+     * test parse json string
+     * @throws JsonProcessingException
+     */
     @Test
     public void testPlaceAutoCompleteJsonParsing() throws JsonProcessingException {
         String response = "{\n" +

@@ -57,36 +57,72 @@ public class PlaceAutoComplete {
         return description;
     }
 
+    /**
+     * set description
+     * @param description desc
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * get distance metres
+     * @return distance
+     */
     public Integer getDistanceMetres() { return distance_meters;}
 
+    /**
+     * set distance metres
+     * @param distanceMetres distance
+     */
     public void setDistanceMetres(Integer distanceMetres) {
         this.distance_meters = distanceMetres;
     }
 
+    /**
+     * get place_id
+     * @return place_id
+     */
     public String getPlaceID() {
         return place_id;
     }
 
+    /**
+     * set place id
+     * @param placeID place_id
+     */
     public void setPlaceID(String placeID) {
         this.place_id = placeID;
     }
 
+    /**
+     * get place types
+     * @return place type
+     */
     public List getPlaceTypes() {
         return types;
     }
 
+    /**
+     * set place types
+     * @param placeTypes placeTypes
+     */
     public void setPlaceTypes(List placeTypes) {
         this.types = placeTypes;
     }
 
+    /**
+     * get structured formatting
+     * @return structured_formatting
+     */
     public Object getStructured_formatting() {
         return structured_formatting;
     }
 
+    /**
+     * set structured formatting
+     * @param structured_formatting structured_formatting
+     */
     public void setStructured_formatting(Object structured_formatting) {
         this.structured_formatting = structured_formatting;
     }
