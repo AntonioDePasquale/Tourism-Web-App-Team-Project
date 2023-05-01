@@ -1,0 +1,7 @@
+com.team21.attractionsGuide
+com.team21.attractionsGuide.config
+com.team21.attractionsGuide.controller
+com.team21.attractionsGuide.entity
+com.team21.attractionsGuide.error
+com.team21.attractionsGuide.repository
+com.team21.attractionsGuide.service

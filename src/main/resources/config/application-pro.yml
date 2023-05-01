@@ -34,12 +34,11 @@ logging:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      # 'Update' is better for production environment
+      ddl-auto: update
     show-sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/comments
-    username: root
-    password: 123456789
-
-## ddl-auto will need to be changed to different mode
+    url: jdbc:mysql://team-21-database.cfire0z0jguy.eu-north-1.rds.amazonaws.com:3306/comments
+    username: admin
+    password: NEWCASTLE

@@ -48,7 +48,7 @@ public class Place {
     private Integer price_level;
 
     @JsonProperty
-    private List types = new ArrayList();
+    private List types = new ArrayList<String>();
 
     //official google page url (application must link this page on screen due to the google API agreement)
     @JsonProperty
@@ -112,110 +112,218 @@ public class Place {
         return place_id;
     }
 
+    /**
+     * set a place_id
+     * @param place_id
+     */
     public void setPlaceID(String place_id) {
         this.place_id = place_id;
     }
 
+    /**
+     * get address
+     * @return
+     */
     public List getAddress_components() {
         return address_components;
     }
 
+    /**
+     * set address
+     * @param address_components
+     */
     public void setAddress_components(List address_components) {
         this.address_components = address_components;
     }
 
+    /**
+     * get formatted address
+     * @return
+     */
     public String getFormatted_address() {
         return formatted_address;
     }
 
+    /**
+     * set formatted address
+     * @param formatted_address
+     */
     public void setFormatted_address(String formatted_address) {
         this.formatted_address = formatted_address;
     }
 
+    /**
+     * get bussiness status
+     * @return
+     */
     public String getBusiness_status() {
         return business_status;
     }
 
+    /**
+     * set business status
+     * @param business_status
+     */
     public void setBusiness_status(String business_status) {
         this.business_status = business_status;
     }
 
+    /**
+     * get formatted phone number
+     * @return
+     */
     public String getFormatted_phone_number() {
         return formatted_phone_number;
     }
 
+    /**
+     * set formatted phone number
+     * @param formatted_phone_number
+     */
     public void setFormatted_phone_number(String formatted_phone_number) {
         this.formatted_phone_number = formatted_phone_number;
     }
 
+    /**
+     * get photos array
+     * @return
+     */
     public List getPhotos() {
         return photos;
     }
 
+    /**
+     * set photos array
+     * @param photos
+     */
     public void setPhotos(List photos) {
         this.photos = photos;
     }
 
+    /**
+     * get rating
+     * @return
+     */
     public Integer getRating() {
         return rating;
     }
 
+    /**
+     * set rating
+     * @param rating
+     */
     public void setRating(Integer rating) {
         this.rating = rating;
     }
 
+    /**
+     * get price level
+     * @return
+     */
     public Integer getPrice_level() {
         return price_level;
     }
 
+    /**
+     * set price level
+     * @param price_level
+     */
     public void setPrice_level(Integer price_level) {
         this.price_level = price_level;
     }
 
+    /**
+     * get types list
+     * @return
+     */
     public List getTypes() {
         return types;
     }
 
+    /**
+     * set types list
+     * @param types
+     */
     public void setTypes(List types) {
         this.types = types;
     }
 
+    /**
+     * get url
+     * @return
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * set url
+     * @param url
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * get editorial summary
+     * @return
+     */
     public Object getEditorial_summary() {
         return editorial_summary;
     }
 
+    /**
+     * set editorial summary
+     * @param editorial_summary
+     */
     public void setEditorial_summary(Object editorial_summary) {
         this.editorial_summary = editorial_summary;
     }
 
+    /**
+     * get website
+     * @return
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     * set website
+     * @param website
+     */
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    /**
+     * get location information
+     * @return
+     */
     public Object getGeometry() {
         return geometry;
     }
 
+    /**
+     * set location information
+     * @param geometry geometry
+     */
     public void setGeometry(Object geometry) {
         this.geometry = geometry;
     }
 
+    /**
+     * get opening hours
+     * @return openning hours array
+     */
     public Object getOpening_hours() {
         return opening_hours;
     }
 
+    /**
+     * set opening hours
+     * @param opening_hours opening_hours
+     */
     public void setOpening_hours(Object opening_hours) {
         this.opening_hours = opening_hours;
     }
@@ -225,7 +333,7 @@ public class Place {
      * returns an ArrayList of POJO Place objects
      * @param response the JSON string of google API data we wish to format
      * @return an ArrayList of POJO Place objects
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException error with deal json
      */
 
     public static ArrayList<Place> formatPlacesResult(String response) throws JsonProcessingException {
