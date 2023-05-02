@@ -28,7 +28,8 @@ public class PlaceExtraServiceTest {
 
     @Test
     public void testFindPlaceExtraByLocationId() {
-        PlaceExtra placeExtra = new PlaceExtra("locationId", "name", "description");
+        PlaceExtra placeExtra = new PlaceExtra("locationId", true, 10.0);
+
         placeExtra.setLocationId(LOCATION_ID);
 
         // Mock the repository call to return the placeExtra object
