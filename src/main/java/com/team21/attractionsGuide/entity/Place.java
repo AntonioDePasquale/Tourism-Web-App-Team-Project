@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * A class representing a Place object used to represent the data from the nearbySearch API call and getDetails
- * @since 2023/04/06
+ * Date: 2023/04/06
  */
 
 //all properties not defined are ignored by Jackson
