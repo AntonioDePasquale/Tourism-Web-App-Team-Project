@@ -42,3 +42,5 @@ spring:
     url: jdbc:mysql://team-21-database.cfire0z0jguy.eu-north-1.rds.amazonaws.com:3306/comments
     username: admin
     password: NEWCASTLE
+
+#  deployment: https://16.16.179.85.nip.io/  Click this link to see the deployment

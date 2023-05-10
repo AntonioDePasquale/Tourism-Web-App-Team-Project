@@ -26,6 +26,8 @@ Production configuration: src/main/resources/config/application-pro.yml
 
 To start in your own environment, change the database configuration.
 
+deployment: https://16.16.179.85.nip.io/  Click this link to see the deployment
+
 ### Run
 
 ```shell
