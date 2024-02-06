@@ -1,3 +1,14 @@
+## Newcastle - A web App to suggest touristic attractions in the city of Newcastle
+
+Java, Spring Boot, JavaScript, HTML, CSS, MySQL, Amazon Web Services
+
+This group project gave me insight into the software engineering workflow.
+
+My resposibility was the implementation of the backend Java SpringBoot code. 
+
+API related code and formatting of Google Maps data in the backend into usable information for the front-end team to display. In charge of Implementing the RDS database schema.
+Lead the communication between frontend and backend teams to ensure proper functionality of formatted API data.
+
 ## Structure
 
 src/main/java/com/team21/attractionsGuide/controller - deal with requests and respond JSON bodies.
